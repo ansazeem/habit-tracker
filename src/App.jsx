@@ -55,7 +55,7 @@ function App() {
       name: inputValue
     }
 
-    console.log("adding habit", newHabit) // adding habit
+    console.log("adding habit", newHabit) // works!!
 
     const newHabits = [...habits, newHabit]
     setHabits(newHabits)
@@ -103,7 +103,7 @@ function App() {
       />
       <button onClick={addHabit}>Add</button>
 
-
+      {/* TODO: style this better */}
       <div className="nav-buttons">
         <button onClick={() => setWeekShift(weekShift - 1)}>← Prev</button>
         <button onClick={() => setWeekShift(0)}>Today</button>
@@ -111,7 +111,11 @@ function App() {
       </div>
 
       {habits.length === 0 && (
-        <p>No habits yet. Add one above!</p>
+        <div className="empty-state">
+          <p>🌱</p>
+          <p>No habits yet</p>
+          <p>Add your first habit above to get started</p>
+        </div>
       )}
 
       {habits.length > 0 && (
@@ -132,7 +136,7 @@ function App() {
               <tr key={habitItem.id}>
                 <td>
                   {habitItem.name}
-                  <button onClick={() => deleteHabit(habitItem.id)}>x</button>
+                  <button className="delete-btn" onClick={() => deleteHabit(habitItem.id)}>×</button>
                 </td>
                 {weekDates.map((date) => (
                   <td key={date}>
